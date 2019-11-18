@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+  go-with-socket.io:
+    build: .
+    ports:
+      - 8060:8060
+    volumes:
+      - .:/app
+    command: fresh
