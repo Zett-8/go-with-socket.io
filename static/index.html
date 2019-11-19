@@ -1,4 +1,4 @@
-{{define "index"}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,16 +6,17 @@
     <title>Title</title>
 </head>
 <body>
-<p>00001</p>
+<p id="num">00002</p>
 
-<script src="/static/node_modules/socket.io-client/dist/socket.io.js"></script>
+<ul id="messages"></ul>
+<form action="">
+    <input id="m" autocomplete="off" /><button>Send</button>
+</form>
 
-<script>
+<button id="bt">bye</button>
 
-    var socket = io.connect();
-
-</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script src="./index.js"></script>
 </body>
 </html>
-
-{{end}}
