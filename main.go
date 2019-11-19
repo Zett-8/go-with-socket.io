@@ -1,6 +1,8 @@
 package main
 
 import (
+	"encoding/json"
+	//"encoding/json"
 	"fmt"
 	"github.com/googollee/go-socket.io"
 	"github.com/labstack/echo"
@@ -54,6 +56,11 @@ import (
 //	return nil
 //}
 
+type Data struct {
+	Room    string
+	Message string
+}
+
 func main() {
 
 	e := echo.New()
@@ -70,21 +77,25 @@ func main() {
 
 	server.OnConnect("/", func(s socketio.Conn) error {
 		s.SetContext("test")
-		s.Join("testRoom")
 		fmt.Println("connected:", s.ID())
 		return nil
 	})
 
-	server.OnEvent("/", "notice", func(s socketio.Conn, msg string) string {
-		fmt.Println("notice:", msg)
-
-		server.BroadcastToRoom("testRoom", "reply", msg)
-		return msg
+	server.OnEvent("/", "room_in", func(s socketio.Conn, room string) {
+		s.Join(room)
 	})
 
-	server.OnEvent("/chat", "msg", func(s socketio.Conn, msg string) string {
-		s.SetContext(msg)
-		return "recv" + msg
+	server.OnEvent("/", "notice", func(s socketio.Conn, d string) string {
+		var data Data
+		err := json.Unmarshal([]byte(d), &data)
+		if err != nil {
+			fmt.Println(err)
+		}
+
+		fmt.Println("received message: ", data.Message, " from room: ", data.Room)
+
+		server.BroadcastToRoom(data.Room, "reply", data.Message)
+		return data.Message
 	})
 
 	server.OnError("/", func(e error) {

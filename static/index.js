@@ -1,26 +1,43 @@
-const socket = io.connect();
+// init form
+
+document.getElementById('root').innerHTML = `
+    <ul id="messages"></ul>
+    <form id="fm" action="">
+    <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+`
+
+
+
+
+const socket = io.connect()
 
 if (!socket.connect) {
     console.log('failed')
 }
 
+
+let MessageArea = document.getElementById('messages')
+let InputForm = document.getElementById('m')
+const roomName = document.getElementsByTagName('title')[0].innerText
+
+
+
+socket.emit('room_in', roomName)
+
 socket.on('reply', function(msg){
-    document.getElementById('messages').innerHTML += '<li>' + msg + '</li>';
-});
+    MessageArea.innerHTML += '<li>' + msg + '</li>'
+})
 
-$('form').submit(function(){
-    socket.emit('notice', $('#m').val());
-    $('#m').val('');
-    return false;
-});
+document.getElementById('fm').addEventListener('submit', e => {
+    e.preventDefault()
+    const msg = InputForm.value
+    const data = {
+        room: roomName,
+        message: msg
+    }
+    console.log(JSON.stringify(data))
+    InputForm.value = ''
 
-$('#bt').click(function (){
-    console.log('button click')
-    socket.emit('bye', null);
-    return false;
-});
-
-
-
-///// prac
-document.getElementById('num').innerText = 'change!'
+    socket.emit('notice', JSON.stringify(data))
+})

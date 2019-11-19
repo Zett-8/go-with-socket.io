@@ -4,19 +4,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <style>
+        body {
+            margin-left: 10px;
+        }
+        h1 {
+            font-size: 27px;
+            margin-bottom: -1px;
+        }
+
+        .subText {
+            font-size: 14px;
+            color: dimgrey;
+            margin-right: 10px;
+            line-height: 0.4;
+        }
+
+        div {
+            margin-top: 140px;
+        }
+    </style>
+
 </head>
 <body>
-<p id="num">00002</p>
+<h1 id="s">Go - echo</h1>
+<p class="subText">socket.io</p>
+<p class="subText">http/2</p>
 
-<ul id="messages"></ul>
-<form action="">
-    <input id="m" autocomplete="off" /><button>Send</button>
-</form>
+<div>
+    <a href="./black.html"><p>Room: Black</p></a>
+    <a href="./white.html"><p>Room: White</p></a>
+</div>
 
-<button id="bt">bye</button>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.1/socket.io.js"></script>
-<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
-<script src="./index.js"></script>
 </body>
 </html>
