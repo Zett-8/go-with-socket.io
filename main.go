@@ -54,8 +54,6 @@ import (
 //	return nil
 //}
 
-
-
 func main() {
 
 	e := echo.New()
@@ -110,12 +108,8 @@ func main() {
 	})
 	e.Any("/socket.io", echo.WrapHandler(server))
 
-	e.Logger.Fatal(e.Start(":8060"))
+	e.Logger.Fatal(e.StartTLS(":8060", "cert.pem", "key.pem"))
 }
-
-
-
-
 
 //func socketIOWrapper() *golang_echo_socket_io.Wrapper {
 //	wrapper, err := golang_echo_socket_io.NewWrapper(nil)
