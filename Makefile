@@ -1,3 +1,6 @@
+start:
+	docker-compose up
+
 build-for-mac:
 	env GOOS=darwin GOARCH=amd64 go build -o app-mac .
 
