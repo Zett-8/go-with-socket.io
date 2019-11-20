@@ -36,8 +36,8 @@ document.getElementById('fm').addEventListener('submit', e => {
         room: roomName,
         message: msg
     }
-    console.log(JSON.stringify(data))
-    InputForm.value = ''
 
     socket.emit('notice', JSON.stringify(data))
+
+    InputForm.value = ''
 })

@@ -68,5 +68,5 @@ func main() {
 	})
 	e.Any("/socket.io", echo.WrapHandler(server))
 
-	e.Logger.Fatal(e.StartTLS(":8060", "cert.pem", "key.pem"))
+	e.Logger.Fatal(e.Start(":8060"))
 }

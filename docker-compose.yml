@@ -4,7 +4,18 @@ services:
   go-with-socket.io:
     build: .
     ports:
-      - 8060:8060
+      - "8060:8060"
     volumes:
       - .:/app
     command: fresh
+#
+#  nginx:
+#    image: nginx:alpine
+#    container_name: gs-nginx
+#    volumes:
+#      - ./nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+#      - ./static:/etc/nginx/html
+#    ports:
+#      - "8080:8080"
+#    depends_on:
+#      - go-with-socket.io
