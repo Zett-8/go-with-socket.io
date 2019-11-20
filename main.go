@@ -69,7 +69,7 @@ func main() {
 	})
 	e.Any("/socket.io", echo.WrapHandler(server))
 
-	PORT := os.Getenv("port")
+	PORT := os.Getenv("PORT")
 	if PORT == "" {
 		PORT = "8060"
 	}
