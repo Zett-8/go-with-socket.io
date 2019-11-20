@@ -71,7 +71,7 @@ func main() {
 
 	PORT := os.Getenv("port")
 	if PORT == "" {
-		PORT = ":8060"
+		PORT = "8060"
 	}
-	e.Logger.Fatal(e.Start(PORT))
+	e.Logger.Fatal(e.Start(":" + PORT))
 }
