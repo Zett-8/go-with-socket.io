@@ -69,9 +69,8 @@ func main() {
 	})
 	e.Any("/socket.io", echo.WrapHandler(server))
 
-	PORT := os.Getenv("PORT")
-	if PORT == "" {
-		PORT = "8060"
+	if env := os.Getenv("GOENV"); env == "production" {
+		e.Logger.Fatal(e.Start(":" + os.Getenv("PORT")))
 	}
-	e.Logger.Fatal(e.Start(":" + PORT))
+	e.Logger.Fatal(e.StartTLS(":8060", "cert.pem", "key.pem"))
 }
