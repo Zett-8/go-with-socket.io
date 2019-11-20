@@ -7,6 +7,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"log"
+	"os"
 )
 
 type Data struct {
@@ -68,5 +69,9 @@ func main() {
 	})
 	e.Any("/socket.io", echo.WrapHandler(server))
 
-	e.Logger.Fatal(e.Start(":8060"))
+	PORT := os.Getenv("port")
+	if PORT == "" {
+		PORT = ":8060"
+	}
+	e.Logger.Fatal(e.Start(PORT))
 }
