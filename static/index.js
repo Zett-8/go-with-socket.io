@@ -1,12 +1,18 @@
 // init form
 
 document.getElementById('root').innerHTML = `
-    <ul id="messages"></ul>
     <form id="fm" action="">
     <input id="m" autocomplete="off" /><button>Send</button>
     </form>
+    <ul id="messages"></ul>
 `
 
+
+let MessageArea = document.getElementById('messages')
+let InputForm = document.getElementById('m')
+const roomName = document.getElementsByTagName('title')[0].innerText
+
+document.body.addEventListener('onload', () => InputForm.focus())
 
 
 
@@ -16,10 +22,6 @@ if (!socket.connect) {
     console.log('failed')
 }
 
-
-let MessageArea = document.getElementById('messages')
-let InputForm = document.getElementById('m')
-const roomName = document.getElementsByTagName('title')[0].innerText
 
 
 

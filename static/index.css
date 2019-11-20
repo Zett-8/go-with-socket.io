@@ -1,0 +1,12 @@
+form {
+    width: 90%;
+    margin: 0 auto;
+}
+input {
+    height: 20px;
+    width: 80%;
+}
+
+button {
+    height: 20px;
+}
