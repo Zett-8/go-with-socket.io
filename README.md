@@ -16,7 +16,7 @@ make start
 ```  
 
 
-Problem:  
+### Problem:  
 First time I used socket.io expecting more stable connection than websocket but somehow socket.io is really slow and I didn't figure it out why.  
 I think using websocket with reconnection func is better choice.  
 That's would be more stable.  
